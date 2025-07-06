@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class GameMenu {
     public static void showMenu(){
-
         Scanner scan = new Scanner(System.in);
         System.out.println("Are you ready for the quizzz!!");
         System.out.println("Enter 1: Sign Up");
