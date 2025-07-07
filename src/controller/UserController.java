@@ -3,8 +3,20 @@ package controller;
 import dao.UserDAO;
 import model.User;
 
+import java.sql.SQLException;
+
 public class UserController {
-    private UserDAO userdao = new UserDAO();
+    private UserDAO userdao;
+
+    {
+        try {
+            userdao = new UserDAO();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public boolean signUp(String username, String password)
     {
@@ -18,5 +30,14 @@ public class UserController {
         }
     }
 
-
+    //TODO user login
+    public boolean logIn(String username, String password)
+    {
+        User user = userdao.checkUser(username, password);
+        if(user != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

@@ -4,14 +4,17 @@ import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO {
+    private Connection conn = null;
+    public UserDAO() throws SQLException, ClassNotFoundException {
+        conn = DatabaseConnection.connect();
+    }
     public boolean insertUser(User user){
         boolean isUserInserted = false;
-        Connection conn = null;
         try {
-            conn = DatabaseConnection.connect();
             if(conn != null){
                 String query = "INSERT INTO user (username, password) VALUES (?, ?)";
                 PreparedStatement ps = conn.prepareStatement(query);
@@ -22,9 +25,28 @@ public class UserDAO {
                     isUserInserted = true;
                 }
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return isUserInserted;
+    }
+
+    public User checkUser(String username, String password) {
+        User user = new User();
+        String query = "Select username, password, isGameMaster from user where username = ? and password = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1,username);
+            ps.setString(2,password);
+            ResultSet userSet = ps.executeQuery();
+            while(userSet.next()){
+                user.setUsername(userSet.getString("username"));
+                user.setPassword(userSet.getString("password"));
+                user.setGameMaster(userSet.getBoolean("isgamemaster"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return user;
     }
 }

@@ -14,6 +14,8 @@ public class GameMenu {
         int option = Integer.parseInt(scan.nextLine());
         if(option == 1){
             SignUpView.showSignUpView();
+        }else if (option == 2){
+            LoginView.showLogInView();
         }
     }
 }
