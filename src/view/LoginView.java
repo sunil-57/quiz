@@ -13,9 +13,7 @@ public class LoginView {
         String username = scan.nextLine();
         System.out.println("Enter password: ");
         String password = scan.nextLine();
-        if(userController.logIn(username, password)){
-            System.out.println("Logged In successfull");
-        }else{
+        if(!userController.logIn(username, password)){
             System.out.println("Log in fail");
         }
     }

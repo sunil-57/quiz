@@ -2,6 +2,8 @@ package controller;
 
 import dao.UserDAO;
 import model.User;
+import view.GameMasterView;
+import view.PlayerView;
 
 import java.sql.SQLException;
 
@@ -35,9 +37,13 @@ public class UserController {
     {
         User user = userdao.checkUser(username, password);
         if(user != null){
+            if(user.isGameMaster()){
+                GameMasterView.show();
+            }else{
+                PlayerView.gameStart();
+            }
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
 }
