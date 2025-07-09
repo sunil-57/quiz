@@ -23,7 +23,6 @@ public class Question {
         this.title = title;
     }
 
-
     public int getCorrect_index() {
         return correct_index;
     }
@@ -34,7 +33,7 @@ public class Question {
 
     public void showOptions(){
         for(int i = 0; i < this.options.length; i++){
-            System.out.println(i+1 + " . "+ options[i]);
+            System.out.println(i+1 + ". "+ options[i]);
         }
     }
 
