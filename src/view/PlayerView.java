@@ -7,25 +7,29 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PlayerView {
-    //TODO need to work
-    public static void gameStart(){
-        QuestionController questionController = new QuestionController();
+    //TODO entry to view score board
+    //TODO option to start game
+    //TODO option to log out
+    public static void gameStartView(){
         Scanner input = new Scanner(System.in);
-        int answer = 0;
-        ArrayList<Question> quizList = questionController.getQuestions();
-        for(Question question: quizList){
-            System.out.println(question.getTitle());
-            question.showOptions();
-            System.out.println("Choose an option: ");
-            answer = Integer.parseInt(input.nextLine());
-            if(question.checkAnswer(answer)){
-                //TODO need to calculate score
-                //TODO add the score information to the score board
-                System.out.println("correct");
-            }else{
-                //not required just for checking purposes
-                System.out.println("incorrect");
+        QuestionController questionController = new QuestionController();
+        int option = 0;
+        System.out.println("Enter 1: Start Game");
+        System.out.println("Enter 2: View Score Board");
+        System.out.println("Enter 3: Exit");
+        System.out.println("Choose option: ");
+        option = Integer.parseInt(input.nextLine());
+        if(option > 0){
+            if(option == 1){
+                questionController.startGame();
+            }else if(option == 2){
+                //TODO need to show the score of all players
+                System.out.println("working on score boards");
+            }else if(option == 3){
+                System.out.println("Exiting");
             }
+        }else{
+            System.out.println("Invalid option. Choose from 1 to 3");
         }
     }
 }

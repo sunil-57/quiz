@@ -40,7 +40,7 @@ public class UserController {
             if(user.isGameMaster()){
                 GameMasterView.show();
             }else{
-                PlayerView.gameStart();
+                PlayerView.gameStartView();
             }
             return true;
         }
