@@ -42,4 +42,13 @@ public class QuestionController {
             questionIndex++;
         }
     }
+
+    public void createQuestion() {
+        //TODO need to work on creating a question
+    }
+
+    public void updateQuestion() {
+        //TODO need to work on update a question
+        // allow game master to update title, options and correct index separately
+    }
 }

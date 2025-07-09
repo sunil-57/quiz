@@ -19,11 +19,11 @@ public class GameMasterView {
         option = Integer.parseInt(input.nextLine());
         if(option > 0){
             if(option == 1){
-
+                questionController.createQuestion();
             }
             else if(option == 2)
             {
-
+                questionController.updateQuestion();
             }else if(option == 3){
                 questionController.listQuestions();
             }else if(option == 4){
