@@ -3,16 +3,16 @@ package model;
 public class Question {
     private String title;
     private int[] options = new int[4];
-    private int correct_index;
+    private int correctIndex;
 
-    public Question(String title, int option_1, int option_2, int option_3, int option_4, int correct_index)
+    public Question(String title, int option_1, int option_2, int option_3, int option_4, int correctIndex)
     {
         this.title = title;
         this.options[0] = option_1;
         this.options[1] = option_2;
         this.options[2] = option_3;
         this.options[3]= option_4;
-        this.correct_index = correct_index;
+        this.correctIndex = correctIndex;
     }
 
     public String getTitle() {
@@ -23,12 +23,20 @@ public class Question {
         this.title = title;
     }
 
-    public int getCorrect_index() {
-        return correct_index;
+    public int[] getOptions() {
+        return options;
+    }
+
+    public void setOptions(int[] options) {
+        this.options = options;
+    }
+
+    public int getCorrectIndex() {
+        return correctIndex;
     }
 
     public void setCorrect_index(int correct_index) {
-        this.correct_index = correct_index;
+        this.correctIndex = correctIndex;
     }
 
     public void showOptions(){
@@ -39,7 +47,7 @@ public class Question {
 
 
     public boolean checkAnswer(int answer){
-        if((answer) == this.correct_index){
+        if((answer) == this.correctIndex){
             return true;
         }
         return false;

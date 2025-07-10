@@ -24,13 +24,20 @@ public class GameMasterView {
             else if(option == 2)
             {
                 questionController.updateQuestion();
-            }else if(option == 3){
+            }
+            else if(option == 3)
+            {
                 questionController.listQuestions();
-            }else if(option == 4){
+            }
+            else if(option == 4)
+            {
                 questionController.startGame();
-            }else if(option == 5){
+            }
+            else if(option == 5)
+            {
                 System.out.println("Exiting");
-            }else{
+            }
+            else{
                 System.out.println("Invalid option");
             }
         }else{

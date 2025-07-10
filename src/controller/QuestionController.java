@@ -3,6 +3,7 @@ package controller;
 import dao.QuestionDAO;
 import model.Question;
 import service.QuestionService;
+import view.CreateQuestionView;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,15 +39,23 @@ public class QuestionController {
         for(Question ques: quizQuestion){
             System.out.println(questionIndex +". "+ ques.getTitle());
             ques.showOptions();
-            System.out.println("Correct Option: "+ ques.getCorrect_index());
+            System.out.println("Correct Option: "+ ques.getCorrectIndex());
             questionIndex++;
         }
     }
 
     public void createQuestion() {
-        //TODO need to work on creating a question
+        CreateQuestionView.showCreateQuestionView();
     }
-
+    public String storeQuestion(Question question){
+        if(questionService.insertQuestion(question)){
+            return "inserted successfully";
+        }
+        else
+        {
+         return "failed to added the question";
+        }
+    }
     public void updateQuestion() {
         //TODO need to work on update a question
         // allow game master to update title, options and correct index separately
