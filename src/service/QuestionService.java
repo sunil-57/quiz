@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class QuestionService {
     QuestionDAO questiondao;
-
     {
         try {
             questiondao = new QuestionDAO();
@@ -26,7 +25,7 @@ public class QuestionService {
             ResultSet questionSet = questiondao.loadQuestions();
 
                 try {
-                    if (questionSet.next()){
+                    while (questionSet.next()){
                         //TITLE, OPTIONS(1-4), CORRECT OPTION
                         Question question = new Question(
                                 questionSet.getString("title"),
