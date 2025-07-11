@@ -1,21 +1,25 @@
 package controller;
 
-import dao.QuestionDAO;
 import model.Question;
+import model.Scoreboard;
+import model.User;
 import service.QuestionService;
 import view.CreateQuestionView;
+import view.DeleteQuestionView;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class QuestionController {
     private final QuestionService questionService = new QuestionService();
 
-    public void startGame(){
+    public boolean startGame(User user){
+        boolean isGameEnded = false;
+        ScoreController scoreController = new ScoreController();
         Scanner input = new Scanner(System.in);
         int answer = 0;
+        int score = 0;
         ArrayList<Question> quizList = questionService.getQuestions();
         for(Question question: quizList){
             System.out.println(question.getTitle());
@@ -23,14 +27,12 @@ public class QuestionController {
             System.out.println("Choose an option: ");
             answer = Integer.parseInt(input.nextLine());
             if(question.checkAnswer(answer)){
-                //TODO need to calculate score
-                //TODO add the score information to the score board
-                System.out.println("correct");
-            }else{
-                //not required just for checking purposes
-                System.out.println("incorrect");
+                score++;
             }
         }
+        Scoreboard scoreboard = new Scoreboard(user.getUserId(),score);
+        isGameEnded = scoreController.keepScore(scoreboard);
+        return isGameEnded;
     }
 
     public void listQuestions(){
@@ -59,5 +61,12 @@ public class QuestionController {
     public void updateQuestion() {
         //TODO need to work on update a question
         // allow game master to update title, options and correct index separately
+    }
+
+    public void editQuestion() {
+    }
+
+    public void deleteQuestion() {
+        DeleteQuestionView.showDeleteQuestionView();
     }
 }

@@ -38,9 +38,9 @@ public class UserController {
         User user = userdao.checkUser(username, password);
         if(user != null){
             if(user.isGameMaster()){
-                GameMasterView.show();
+                GameMasterView.show(user);
             }else{
-                PlayerView.gameStartView();
+                PlayerView.gameStartView(user);
             }
             return true;
         }
