@@ -24,7 +24,7 @@ public class ScoreDAO {
             }
         return false;
     }
-    public void scores(){
-        String query = "SELECT user.username, max(scoreboard.score) as totalscore, scoreboard.playedDate FROM `scoreboard` JOIN user on user.userId = scoreboard.userId GROUP by user.username order by totalscore DESC";
+    public void scores() {
+        String query = "SELECT user.username, max(scoreboard.score) as totalscore, scoreboard.playedDate git FROM `scoreboard` JOIN user on user.userId = scoreboard.userId GROUP by user.username order by totalscore DESC";
     }
 }

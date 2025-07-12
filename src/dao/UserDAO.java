@@ -32,7 +32,7 @@ public class UserDAO {
     }
 
     public User checkUser(String username, String password) {
-        User user = new User();
+        User user = null;
         String query = "Select userid, username, password, isGameMaster from user where username = ? and password = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -40,6 +40,7 @@ public class UserDAO {
             ps.setString(2,password);
             ResultSet userSet = ps.executeQuery();
             while(userSet.next()){
+                user = new User();
                 user.setUserId(userSet.getInt("userid"));
                 user.setUsername(userSet.getString("username"));
                 user.setPassword(userSet.getString("password"));
