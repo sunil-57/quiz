@@ -15,3 +15,8 @@
 
 ### VS Code ###
 .vscode/
+
+.idea/
+*.iml
+lib/
+out/
