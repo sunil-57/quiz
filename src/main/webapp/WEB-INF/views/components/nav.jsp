@@ -23,7 +23,7 @@
         <li>
           <a href="${pageContext.request.contextPath}/" class="items-center flex py-2 px-3 ${activePage == 'home' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm" aria-current="page">Home</a>
         </li>
-        <c:if test="${not empty sessionScope.loggedInUser and sessionScope.loggedInUser.admin}">
+        <c:if test="${not empty sessionScope.user and sessionScope.user.admin}">
             <li>
                  <a href="${pageContext.request.contextPath}/add-category" class="items-center flex py-2 px-3 ${activePage == 'create-category' ? 'text-gray-700 font-extrabold dark:font-extrabold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 font-medium dark:font-medium hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Create Category</a>
             </li>
@@ -38,7 +38,7 @@
           <a href="${pageContext.request.contextPath}/quizzes" class="items-center flex py-2 px-3 ${activePage == 'quizzes' ? 'text-gray-700 font-bold dark:font-bold hover:text-blue-100 dark:text-blue-700 dark:hover:text-blue-100' : 'text-gray-700 font-medium dark:font-medium hover:text-blue-100 dark:text-white dark:hover:text-blue-100'} rounded-sm">Quizzes</a>
         </li>
         <c:choose>
-            <c:when test="${empty sessionScope.loggedInUser}">
+            <c:when test="${empty sessionScope.user}">
                 <li>
                     <a href="${pageContext.request.contextPath}/log-in"
                        class="items-center flex py-2 px-3 text-gray-700 hover:text-blue-100 dark:text-white dark:hover:text-blue-100 rounded-sm">
@@ -59,7 +59,7 @@
                     <div class="relative">
                         <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
                                 class="items-center flex py-2 px-3 text-gray-700 font-extrabold dark:font-extrabold hover:text-blue-100 dark:text-white dark:hover:text-blue-100 rounded-sm">
-                            <c:out value="${sessionScope.loggedInUser.username}" />
+                            <c:out value="${sessionScope.user.username}" />
                             <svg class="w-2.5 h-2.5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="m1 1 4 4 4-4" />
@@ -77,7 +77,7 @@
                                        class="block px-4 py-2 hover:bg-gray-100">Settings</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.loggedInUser.userid}"
+                                    <a href="${pageContext.request.contextPath}/quizzes/${sessionScope.user.userid}"
                                        class="block px-4 py-2 hover:bg-gray-100">My Quizzes</a>
                                 </li>
                             </ul>
