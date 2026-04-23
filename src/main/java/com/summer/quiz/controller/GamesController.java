@@ -1,5 +1,6 @@
 package com.summer.quiz.controller;
 
+import com.summer.quiz.models.Games;
 import com.summer.quiz.models.Questions;
 import com.summer.quiz.models.User;
 import com.summer.quiz.services.GamesService;
@@ -28,7 +29,6 @@ public class GamesController {
             @PathVariable int quizId,
             @PathVariable int questionIndex,
             Model model) {
-        //TODO
         // user needs to log in to start quiz
         List<Questions> questions = questionsService.getQuestions(quizId);
 
@@ -52,8 +52,8 @@ public class GamesController {
             @RequestParam("questionId") int questionId,
             @RequestParam("selectedOption") String selectedOption,
             @RequestParam("isLast") int isLast,
-            @RequestParam("userId") int userId,
             HttpSession session) {
+        User user = (User) session.getAttribute("user");
         Integer score = (Integer) session.getAttribute("score");
         if (score == null) {
             score = 0;
@@ -65,7 +65,7 @@ public class GamesController {
         }
 
         // store answer
-        answers.put(questionIndex, selectedOption);
+        answers.put(questionId, selectedOption);
 
         // update score
         score = questionsService.calculateScore(questionId, selectedOption, score);
@@ -75,13 +75,15 @@ public class GamesController {
 
 
         if (isLast == 1) {
-            gamesService.saveScore(userId, quizId, score);
-
+            System.out.println("All answers so far: " + answers);
+            // save the game and answers given by the user
             // optional: clear session
+            Games game = gamesService.saveScore(user.getUserid(), quizId, score);
+
             session.removeAttribute("score");
             session.removeAttribute("answers");
 
-            return "redirect:/result/" + quizId;
+            return "redirect:/quizzes";
         }
 
         // next question

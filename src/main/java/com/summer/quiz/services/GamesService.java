@@ -18,7 +18,7 @@ public class GamesService {
     @Autowired
     private QuizService quizService;
 
-    public void saveScore(Integer userId, int quizId, Integer score) {
+    public Games saveScore(Integer userId, int quizId, Integer score) {
         User user = userService.getUserById(userId);
         Quiz quiz = quizService.getQuizById(quizId);
 
@@ -27,6 +27,6 @@ public class GamesService {
         game.setQuiz(quiz);
         game.setScore(score);
 
-        gamesRepository.save(game);
+        return gamesRepository.save(game);
     }
 }

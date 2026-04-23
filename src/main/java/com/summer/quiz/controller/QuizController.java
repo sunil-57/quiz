@@ -45,7 +45,7 @@ public class QuizController {
 
     @PostMapping
     public String saveQuiz(@ModelAttribute Quiz quiz, HttpSession session){
-        User loggedInUser = (User) session.getAttribute("loggedInUser"); // Ensure this is set at login
+        User loggedInUser = (User) session.getAttribute("user"); // Ensure this is set at login
         if (loggedInUser == null) {
             return "redirect:/log-in";
         }
@@ -56,7 +56,7 @@ public class QuizController {
 
     @PutMapping("/{quizId}")
     public String toggleQuizStatus(@PathVariable int quizId, RedirectAttributes redirectAttributes, HttpSession session) {
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        User loggedInUser = (User) session.getAttribute("user");
         if (loggedInUser == null) {
             return "redirect:/log-in";
         }

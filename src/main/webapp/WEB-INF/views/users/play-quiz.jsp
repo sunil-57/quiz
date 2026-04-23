@@ -34,7 +34,6 @@
             ${question.option4}
         </label>
         <input type="hidden" name="isLast" value="${questionIndex == totalQuestions ? "1" : "0"}"/>
-        <input type="hidden" name = "userId" value = "${sessionScope.user.userid}"/>
         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
             ${questionIndex == totalQuestions ? "Finish Quiz" : "Next Question"}
         </button>
