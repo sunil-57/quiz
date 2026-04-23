@@ -53,7 +53,7 @@ public class UserController {
         User user = userService.authenticate(username, password);
 
         if (user != null) {
-            session.setAttribute("loggedInUser", user);
+            session.setAttribute("user", user);
             if (user.isAdmin()) {
                 return "redirect:/admin/dashboard";
             } else {

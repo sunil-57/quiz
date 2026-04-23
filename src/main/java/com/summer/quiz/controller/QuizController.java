@@ -90,48 +90,6 @@ public class QuizController {
 
         return viewName;
     }
-    @GetMapping("/play/{quizId}/{questionIndex}")
-    public String playQuiz(
-            @PathVariable int quizId,
-            @PathVariable int questionIndex,
-            Model model) {
-        //TODO
-        // user needs to log in to start quiz
-        List<Questions> questions = questionsService.getQuestions(quizId);
 
-        if (questionIndex < 0 || questionIndex >= questions.size()) {
-            return "redirect:/quiz-finished";
-        }
-
-        Questions question = questions.get(questionIndex-1);
-
-        model.addAttribute("question", question);
-        model.addAttribute("questionIndex", questionIndex);
-        model.addAttribute("totalQuestions", questions.size());
-        model.addAttribute("quizId", quizId);
-
-        return "users/play-quiz";
-    }
-    @PostMapping("/check/{quizId}/{questionIndex}")
-    public String checkAnswer(
-            @PathVariable int quizId,
-            @PathVariable int questionIndex,
-            @RequestParam("questionId") int questionId,
-            @RequestParam("selectedOption") String selectedOption,
-            HttpSession session) {
-        Integer score = (Integer) session.getAttribute("score");
-        if (score == null) {
-            score = 0;
-        }
-        Map<Integer, String> answers = (Map<Integer, String>) session.getAttribute("answers");
-        if (answers == null) {
-            answers = new HashMap<>();
-        }
-        answers.put(questionIndex, selectedOption);
-        session.setAttribute("score", questionsService.calculateScore(questionId, selectedOption, score));
-        session.setAttribute("answers", answers);
-
-        return "redirect:/quizzes/play/" + quizId + "/" + (questionIndex + 1);
-    }
 
 }

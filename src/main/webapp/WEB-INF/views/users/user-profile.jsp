@@ -11,14 +11,14 @@
 
 <div class="max-w-6xl mx-auto px-6 py-8">
    <div class="border border-gray-400 rounded-md p-6 bg-white shadow text-lg text-gray-800 space-y-4">
-        <p><strong>Full Name:</strong> ${sessionScope.loggedInUser.fullname}</p>
-        <p><strong>Username:</strong> ${sessionScope.loggedInUser.username}</p>
-        <p><strong>Joined Date:</strong> ${sessionScope.loggedInUser.joinedDate}</p>
+        <p><strong>Full Name:</strong> ${sessionScope.user.fullname}</p>
+        <p><strong>Username:</strong> ${sessionScope.user.username}</p>
+        <p><strong>Joined Date:</strong> ${sessionScope.user.joinedDate}</p>
         <p>
             <strong>Role:</strong>
             <span class="font-semibold">
                 <c:choose>
-                    <c:when test="${sessionScope.loggedInUser.admin}">
+                    <c:when test="${sessionScope.user.admin}">
                         Admin
                     </c:when>
                     <c:otherwise>

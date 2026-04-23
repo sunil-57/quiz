@@ -27,4 +27,8 @@ public class UserService {
         }
         return null;
     }
+    public User getUserById(int id) {
+        return userrepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found: " + id));
+    }
 }

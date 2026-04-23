@@ -43,6 +43,6 @@ public class QuizService {
 
     public Quiz getQuizById(int quizId) {
         return quizRepository.findById(quizId)
-                .orElse(null);
+                .orElseThrow(() -> new RuntimeException("Quiz not found: " + quizId));
     }
 }
