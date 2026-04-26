@@ -13,6 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authHandler)
-                .addPathPatterns("/games/**", "/add-category", "/create-quiz");  // protect all game routes
+                .addPathPatterns("/games/**", "/add-category", "/create-quiz", "/quizzes/**", "/users/**")
+                .excludePathPatterns("/quizzes", "/users/register", "/users/log-in");  // protect all game routes
     }
 }
